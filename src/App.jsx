@@ -1,88 +1,61 @@
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/home';
 import Team from './pages/team';
 import Contact from './pages/contact';
-
-function Navigation() {
-  const location = useLocation();
-
-  return (
-    <nav className="navbar navbar-expand-lg bg-white sticky-top shadow-sm py-3">
-      <div className="container">
-        {/* Logo & Nama Brand */}
-        <Link className="navbar-brand fw-bold fs-4 d-flex align-items-center gap-2 text-decoration-none" to="/">
-          <i className="fa-solid fa-book fa-xl" style={{ color: 'rgb(116, 192, 252)' }}></i>
-          <span style={{ color: '#0f172a', fontWeight: '700', letterSpacing: '-0.5px' }}>BookStore</span>
-        </Link>
-
-        <button 
-          className="navbar-toggler border-0 shadow-none" 
-          type="button" 
-          data-bs-toggle="collapse" 
-          data-bs-target="#navbarNav"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
-
-        <div className="collapse navbar-collapse" id="navbarNav">
-          <ul className="navbar-nav ms-auto gap-2 gap-lg-4 fw-semibold mt-3 mt-lg-0">
-            <li className="nav-item">
-              <Link 
-                className="nav-link px-2" 
-                to="/" 
-                style={{ color: location.pathname === '/' ? '#0284c7' : '#64748b', fontWeight: location.pathname === '/' ? '700' : '500' }}
-              >
-                Home
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link 
-                className="nav-link px-2" 
-                to="/team" 
-                style={{ color: location.pathname === '/team' ? '#0284c7' : '#64748b', fontWeight: location.pathname === '/team' ? '700' : '500' }}
-              >
-                Team
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link 
-                className="nav-link px-2" 
-                to="/contact" 
-                style={{ color: location.pathname === '/contact' ? '#0284c7' : '#64748b', fontWeight: location.pathname === '/contact' ? '700' : '500' }}
-              >
-                Contact
-              </Link>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
-  );
-}
+import Login from './pages/login';
+import Register from './pages/register';
 
 function App() {
   return (
     <Router>
-      <div className="d-flex flex-column min-vh-100" style={{ backgroundColor: '#f8fafc' }}>
-        <Navigation />
+      {/* Navbar Utama */}
+      <nav className="navbar navbar-expand-lg navbar-light bg-white py-3 px-4 shadow-sm sticky-top">
+        <div className="container-fluid">
+          
+          {/* Logo & Icon Buku */}
+          <Link className="navbar-brand fw-bold fs-4 d-flex align-items-center text-dark" to="/">
+            <i className="fa-solid fa-book text-primary me-2"></i> BookStore
+          </Link>
 
-        <main className="flex-grow-1">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/team" element={<Team />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
-        </main>
+          {/* Tombol Hamburger untuk Tampilan Mobile (HP) */}
+          <button 
+            className="navbar-toggler border-0 shadow-none" 
+            type="button" 
+            data-bs-toggle="collapse" 
+            data-bs-target="#navbarNav" 
+            aria-controls="navbarNav" 
+            aria-expanded="false" 
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
 
-        <footer className="bg-white border-top py-4 mt-auto">
-          <div className="container text-center">
-            <p className="mb-0 small" style={{ color: '#64748b' }}>
-              &copy; 2026 <strong style={{ color: '#0f172a' }}>BookStore</strong>. Hak Cipta Dilindungi.
-            </p>
+          {/* Menu Navigasi & Tombol Auth */}
+          <div className="collapse navbar-collapse" id="navbarNav">
+            <div className="navbar-nav ms-auto align-items-lg-center">
+              <Link className="nav-link px-3 text-dark fw-medium" to="/">Home</Link>
+              <Link className="nav-link px-3 text-dark fw-medium" to="/team">Team</Link>
+              <Link className="nav-link px-3 text-dark fw-medium" to="/contact">Contact</Link>
+              
+              {/* Tombol Login & Register (Pill Shape) */}
+              <div className="d-flex align-items-center gap-2 ms-lg-3 mt-3 mt-lg-0">
+                <Link className="btn btn-outline-primary px-4 rounded-pill" to="/login">Login</Link>
+                <Link className="btn btn-primary px-4 rounded-pill text-white" to="/register">Register</Link>
+              </div>
+            </div>
           </div>
-        </footer>
-      </div>
+
+        </div>
+      </nav>
+
+      {/* Pengaturan Rute Halaman */}
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/team" element={<Team />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/register" element={<Register />} />
+      </Routes>
     </Router>
   );
 }
