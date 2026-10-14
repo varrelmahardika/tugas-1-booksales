@@ -1,5 +1,6 @@
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
 import Home from './pages/home';
+import Book from './pages/book'; 
 import Team from './pages/team';
 import Contact from './pages/contact';
 import Login from './pages/login';
@@ -34,6 +35,7 @@ function App() {
           <div className="collapse navbar-collapse" id="navbarNav">
             <div className="navbar-nav ms-auto align-items-lg-center">
               <Link className="nav-link px-3 text-dark fw-medium" to="/">Home</Link>
+              <Link className="nav-link px-3 text-dark fw-medium" to="/book">Book</Link> {/* <-- 2. Tambahan Link Navbar Book */}
               <Link className="nav-link px-3 text-dark fw-medium" to="/team">Team</Link>
               <Link className="nav-link px-3 text-dark fw-medium" to="/contact">Contact</Link>
               
@@ -51,6 +53,7 @@ function App() {
       {/* Pengaturan Rute Halaman */}
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/book" element={<Book />} /> {/* <-- 3. Tambahan Route ke halaman Book */}
         <Route path="/team" element={<Team />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/login" element={<Login />} />
